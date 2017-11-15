@@ -1,0 +1,54 @@
+<nav class="navbar navbar-default active">
+    <span id="nav-begins"></span><!-- place before navigation bar-->
+    <div class="container-wrapper navigation">
+        <nav class="navbar navbar-default" role="navigation">
+
+            <div class="container">
+
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <a class="navbar-brand" href="__ROOT__/">
+                        {$theme_vars.company_name|default='ThinkCMF'}
+                    </a>
+                    <ul class="mini"></ul><!-- mobile navigation -->
+                </div><!-- .navbar-header -->
+
+                <div class="collapse navbar-collapse">
+                    <div class="right">
+                        <ul id="main-menu" class="nav navbar-nav">
+                            <navigation nav-id="" root="" id="main-navigation" class="nav navbar-nav navbar-nav-custom" max-level="0">
+                                <navigationMenu root="li" class="menu-item menu-item-level-{$level}">
+                                    <a href="{$menu.href|default=''}" target="{$menu.target|default=''}">
+                                        {$menu.name|default=''}
+                                    </a>
+                                </navigationMenu>
+                                <navigationFolder root="li"
+                                                  class="dropdown dropdown-custom dropdown-custom-level-{$level}"
+                                                  dropdown="ul"
+                                                  dropdown-class="dropdown-menu dropdown-menu-level-{$level}">
+                                    <a href="#" class="dropdown-toggle dropdown-toggle-{$level}" data-toggle="dropdown">
+                                        {$menu.name|default=''}<span class="caret"></span>
+                                    </a>
+                                </navigationFolder>
+                            </navigation>
+                        </ul>
+                        <div class="navbar-form navbar-left">
+                            <i class="fa fa-times"></i>
+                            <i class="fa fa-search"></i>
+                        </div>
+                    </div>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+            <div class="search-field">
+                <div class="container">
+                    <form method="get" role="search">
+                        <input type="text" name="s" placeholder="请输入查询内容,回车键确定" />
+                        <button type="submit" class="hidden btn btn-default">Submit</button>
+                    </form>
+                </div>
+            </div><!-- search-field -->
+        </nav>
+    </div>
+</nav>
