@@ -1,20 +1,57 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>{$category.name} {$category.seo_title} {$site_info.site_name|default=''}</title>
-    <meta name="keywords" content="{$category.seo_keywords},{$site_info.site_seo_keywords|default=''}"/>
-    <meta name="description" content="{$category.seo_description},{$site_info.site_seo_description|default=''}">
+
+    <!-- Bootstrap core CSS -->
+    <link href="__TMPL__/public/css/bootstrap.css" rel="stylesheet" />
+    <!-- Primary CSS styles -->
+    <link href="__TMPL__/public/css/style.css" rel="stylesheet" />
+    <!-- Fontawesome CSS styles -->
+    <link href="__TMPL__/public/css/font-awesome.min.css" rel="stylesheet" />
+    <!-- Aniamte CSS styles -->
+    <link href="__TMPL__/public/css/animate.css" rel="stylesheet" />
+    <!-- Nivo Slider CSS Styles -->
+    <link href="__TMPL__/public/css/nivo-slider.css" rel="stylesheet" />
+    <!-- Owl Carousel CSS Styles -->
+    <link href="__TMPL__/public/css/owl.carousel.css" rel="stylesheet" />
+    <link href="__TMPL__/public/css/owl.transitions.css" rel="stylesheet" />
     <include file="public@head"/>
     <hook name="before_head_end"/>
+
 </head>
-<body class="body-white">
-<include file="public@nav"/>
-<div class="container">
-    <php>$demo_time=2;</php>
-    <h2>{$category.name}</h2>
-    <div class="row">
-        <div class="col-md-9">
-            <div class="">
+
+<body>
+
+<div class="container-wrapper navigation">
+    <include file="public@nav"/>
+</div><!-- .navigation -->
+
+<div id="nav-ends"></div>
+
+<section class="slug parallax-slug-3" data-stellar-background-ratio="0">
+    <div class="overlay">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="anim fadeInDown">Blog</h1>
+                    <p class="anim fadeInDown" data-wow-delay=".32s">Check out our badass posts.</p>
+                    <span class="anim fadeInDown" data-wow-delay=".42s"><a href="index.html">Home</a> <i class="fa fa-angle-right"></i> About</span>
+                </div><!-- .col-lg-12 -->
+            </div><!-- .row -->
+        </div>
+    </div><!-- .overlay -->
+</section>
+
+<section class="content-section low-rider">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-9">
                 <php>
                     $where=[
                     'post.create_time'=>['egt',0]
@@ -24,104 +61,518 @@
                                  relation="categories"
                                  categoryIds="$category.id"
                                  returnVarName="articles_data">
-                    <div class="list-boxes">
-                        <h2><a href="{:cmf_url('portal/Article/index',array('id'=>$vo['id'],'cid'=>$category['id']))}">{$vo.post_title}</a>
-                        </h2>
-                        <p>{$vo.post_excerpt}</p>
-                        <div>
-                            <div class="pull-left">
-                                <div class="list-actions">
-                                    <a href="javascript:;"><i class="fa fa-eye"></i><span>{$vo.post_hits}</span></a>
-                                    <a href="{:url('portal/Article/doLike',array('id'=>$vo['id']))}"
-                                       class="js-count-btn"><i class="fa fa-thumbs-up"></i><span class="count">{$vo.post_like}</span></a>
-                                    <a href="{:url('user/Favorite/add',array('id'=>$vo['id'],'cid'=>$category['id']))}"
-                                       class="js-favorite-btn"
-                                       data-id="{$vo.id}"
-                                       data-table="portal_post"
-                                       data-title="{:base64_encode($vo.post_title)}"
-                                       data-url="{:cmf_url_encode('portal/Article/index',array('id'=>$vo['id'],'cid'=>$category['id']))}"
-                                    >
-                                        <i class="fa fa-star-o"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <a class="btn btn-warning btn-sm pull-right"
-                               href="{:cmf_url('portal/Article/index',array('id'=>$vo['id'],'cid'=>$category['id']))}">查看更多</a>
-                        </div>
-                    </div>
+
+
+                <div class="blog anim fadeInLeft">
+                        <span class="image">
+                            <a href="single.html" id="desc" data-icon="fa-link">
+                                <img src="{:cmf_get_image_url($vo.more.thumbnail)}" alt="Blog Sample Image" />
+                            </a>
+                        </span><!-- .image -->
+
+                    <div class="date">
+                        <a href="single.html" class="day">
+                            {:date('d',$vo.published_time)}
+                        </a>
+                        <a href="single.html" class="month">
+                            {:date('M',$vo.published_time)}
+                        </a>
+                    </div><!-- .date -->
+
+                    <span class="title-desc">
+                            <h3>{$vo.post_title}</h3>
+                            <ul class="meta">
+                                <li><a href="single.html"><i class="fa fa-user"></i>{$vo.post_hits}</a></li>
+                                <li><a href="single.html"><i class="fa fa-comment"></i>{$vo.comment_count}</a></li>
+                                <li><a href="single.html"><i class="fa fa-heart"></i>{$vo.post_like}</a></li>
+                            </ul><!-- .meta -->
+                        </span><!-- .title-desc -->
+
+                    <p>
+                        {$vo.post_excerpt}
+                    </p>
+
+                    <a class="btn btn-sm btn-primary icon" data-wow-delay=".45s" role="button" href="single.html"><i class="fa fa-long-arrow-right"></i>Read More</a>
+
+                    <div class="clearfix"></div>
+
+                </div><!-- .blog -->
+
                 </portal:articles>
 
-            </div>
-            <ul class="pagination">
-                <page/>
-            </ul>
-        </div>
-        <div class="col-md-3">
+                <ul class="pagination anim fadeInLeft" data-wow-delay="0.2s">
+                    <li><a href="single.html">&laquo;</a></li>
+                    <li><a href="single.html">1</a></li>
+                    <li><a href="single.html">2</a></li>
+                    <li><a href="single.html">3</a></li>
+                    <li><a href="single.html">4</a></li>
+                    <li><a href="single.html">&raquo;</a></li>
+                </ul><!-- .pagination -->
 
-            <widget name="hottest_articles">
-                <div class="tc-box">
-                    <div class="headtitle">
-                        <h2>{$widget.title}</h2>
-                    </div>
-                    <div class="ranking">
-                        <php>
-                            $hot_articles=[];
-                        </php>
-                        <ul class="list-unstyled">
-                            <portal:articles limit="5" order="post.post_hits DESC"
-                                             categoryIds="$widget.vars.hottest_articles_category_id">
-                                <php>$top=$key<3?"top3":"";</php>
-                                <li class="{$top}">
-                                    <i>{$key+1}</i>
-                                    <a title="{$vo.post_title}"
-                                       href="{:cmf_url('portal/Article/index',array('id'=>$vo['id']))}">
-                                        {$vo.post_title}
-                                    </a>
+            </div><!-- .col-lg-9 -->
+
+            <div class="col-lg-3 sidebar">
+                <h4 class="anim fadeInRight">
+                    Search the Blog<i class="fa fa-th-list"></i>
+                </h4>
+                <form>
+                   		<span class="search-wrapper anim fadeInRight">
+                            <input type="text" name="s" class="search" value="" placeholder="Type then press enter..." />
+                            <i class="fa fa-search"></i>
+                    	</span>
+                </form>
+
+                <h4 class="anim fadeInRight">
+                    Recent Comments<i class="fa fa-comment"></i>
+                </h4>
+
+                <div class="anim fadeInRight">
+                    <ul id="carousel" class="comments-wrapper">
+                        <li>
+                            <ul class="comments">
+                                <li>
+                                    Quisque accumsan justo ut malesuada sa&hellip;
+                                    <a href="single.html">- Username</a>
                                 </li>
-                            </portal:articles>
-                        </ul>
+                                <li>
+                                    Suspendisse euismod turpis eu aliquam t&hellip;
+                                    <a href="single.html">- Username</a>
+                                </li>
+                                <li>
+                                    Nullam faucibus eros quis nisl gravidas lo&hellip;
+                                    <a href="single.html">- Username</a>
+                                </li>
+                            </ul><!-- .comments -->
+                        </li>
+                        <li>
+                            <ul class="comments">
+                                <li>
+                                    Nullam faucibus eros quis nisl gravidas lo&hellip;
+                                    <a href="single.html">- Username</a>
+                                </li>
+                                <li>
+                                    Suspendisse euismod turpis eu aliquam t&hellip;
+                                    <a href="single.html">- Username</a>
+                                </li>
+                                <li>
+                                    Quisque accumsan justo ut malesuada sa&hellip;
+                                    <a href="single.html">- Username</a>
+                                </li>
+                            </ul><!-- .comments -->
+                        </li>
+                        <li>
+                            <ul class="comments">
+                                <li>
+                                    Suspendisse nec risus lorem. Morbi dapib.
+                                    <a href="single.html">- Username</a>
+                                </li>
+                                <li>
+                                    Suspendisse nec risus lorem. Morbi dapib.
+                                    <a href="single.html">- Username</a>
+                                </li>
+                                <li>
+                                    Suspendisse nec risus lorem. Morbi dapib.
+                                    <a href="single.html">- Username</a>
+                                </li>
+                            </ul><!-- .comments -->
+                        </li>
+                    </ul><!-- .comments-wrapper -->
+                </div>
+
+                <h4 class="anim fadeInRight">
+                    Testimonials<i class="fa fa-quote-right"></i>
+                </h4>
+
+                <div class="testimonials anim fadeInRight">
+                    <div class="testimonial-wrapper" id="testimonials">
+                        <div>
+                            <p>
+                                Donec sapien purus, aliquet sed gravida vitae,
+                                luctus vitae elit. Nunc a est magna. Cras eu purus
+                                a tortor elementum aliquam.
+                            </p>
+                            <img src="http://placehold.it/70x70/f8c2c5/ffffff" />
+                        </div>
+                        <div>
+                            <p>
+                                Donec sapien purus, aliquet sed gravida vitae,
+                                luctus vitae elit. Nunc a est magna. Cras eu purus
+                                a tortor elementum aliquam.
+                            </p>
+                            <img src="http://placehold.it/70x70/f8c2c5/ffffff" />
+                        </div>
+                        <div>
+                            <p>
+                                Donec sapien purus, aliquet sed gravida vitae,
+                                luctus vitae elit. Nunc a est magna. Cras eu purus
+                                a tortor elementum aliquam.
+                            </p>
+                            <img src="http://placehold.it/70x70/f8c2c5/ffffff" />
+                        </div>
+                    </div><!-- .testimonials -->
+
+                    <h4>Some Text<i class="fa fa-bug"></i></h4>
+
+                    <div class="text">
+                        <p>
+                            When it comes to SEO, you really can't go wrong with adding more text. Especially in convenient,
+                            repeated, areas like a sidebar or a footer content area. Cras sed iaculis diam, et fringilla libero.
+                            Cras ut justo tristique massa vehicula iaculis. Praesent vitae hendrerit turpis, quis venenatis enim.
+                            Aenean vestibulum diam libero, eget malesuada eros lacinia id. Mauris semper at turpis quis vehicula.
+                        </p>
+                    </div><!-- .text -->
+
+                    <h4 class="anim fadeInRight">
+                        Popular Posts<i class="fa fa-bomb"></i>
+                    </h4>
+
+                    <div class="anim fadeInRight">
+                        <ul id="carousel-2" class="posts-wrapper">
+                            <li>
+                                <ul class="posts">
+                                    <li>
+                                        <a href="single.html">
+                                                <span class="hover">
+                                                    <span><i class="fa fa-heart"></i>22</span>
+                                                    <span><i class="fa fa-eye"></i>1,230</span>
+                                                    <span><i class="fa fa-external-link"></i>102</span>
+                                                </span><!-- .hover -->
+                                        </a>
+                                        <img src="http://placehold.it/90x90/f8c2c5/ffffff" />
+                                        <h6>
+                                            This is really cool, hover over me.
+                                        </h6>
+                                        <cite><i class="fa fa-user"></i>EmptyMilkJug43</cite>
+                                        <div class="clearfix"></div>
+                                    </li>
+
+                                    <li>
+                                        <a href="single.html">
+                                                <span class="hover">
+                                                    <span><i class="fa fa-heart"></i>22</span>
+                                                    <span><i class="fa fa-eye"></i>1,230</span>
+                                                    <span><i class="fa fa-external-link"></i>102</span>
+                                                </span><!-- .hover -->
+                                        </a>
+                                        <img src="http://placehold.it/90x90/f8c2c5/ffffff" />
+                                        <h6>
+                                            Awesome post example, click!
+                                        </h6>
+                                        <cite><i class="fa fa-user"></i>MuffinBasket221</cite>
+                                        <div class="clearfix"></div>
+                                    </li>
+
+                                    <li>
+                                        <a href="single.html">
+                                                <span class="hover">
+                                                    <span><i class="fa fa-heart"></i>22</span>
+                                                    <span><i class="fa fa-eye"></i>1,230</span>
+                                                    <span><i class="fa fa-external-link"></i>102</span>
+                                                </span><!-- .hover -->
+                                        </a>
+                                        <img src="http://placehold.it/90x90/f8c2c5/ffffff" />
+                                        <h6>
+                                            This is really cool, hover over me.
+                                        </h6>
+                                        <cite><i class="fa fa-user"></i>MuffinBasket221</cite>
+                                        <div class="clearfix"></div>
+                                    </li>
+                                </ul><!-- .posts -->
+                            </li>
+                            <li>
+                                <ul class="posts">
+                                    <li>
+                                        <a href="single.html">
+                                                <span class="hover">
+                                                    <span><i class="fa fa-heart"></i>1,233</span>
+                                                    <span><i class="fa fa-eye"></i>4,322</span>
+                                                    <span><i class="fa fa-external-link"></i>1</span>
+                                                </span><!-- .hover -->
+                                        </a>
+                                        <img src="http://placehold.it/90x90/f8c2c5/ffffff" />
+                                        <h6>
+                                            Cat eats owner's children.
+                                        </h6>
+                                        <cite><i class="fa fa-user"></i>MuffinBasket221</cite>
+                                        <div class="clearfix"></div>
+                                    </li>
+
+                                    <li>
+                                        <a href="single.html">
+                                                <span class="hover">
+                                                    <span><i class="fa fa-heart"></i>32</span>
+                                                    <span><i class="fa fa-eye"></i>3,219</span>
+                                                    <span><i class="fa fa-external-link"></i>2</span>
+                                                </span><!-- .hover -->
+                                        </a>
+                                        <img src="http://placehold.it/90x90/f8c2c5/ffffff" />
+                                        <h6>
+                                            This is really cool, hover over me.
+                                        </h6>
+                                        <cite><i class="fa fa-user"></i>MuffinBasket221</cite>
+                                        <div class="clearfix"></div>
+                                    </li>
+
+                                    <li>
+                                        <a href="single.html">
+                                                <span class="hover">
+                                                    <span><i class="fa fa-heart"></i>98</span>
+                                                    <span><i class="fa fa-eye"></i>8,988</span>
+                                                    <span><i class="fa fa-external-link"></i>9</span>
+                                                </span><!-- .hover -->
+                                        </a>
+                                        <img src="http://placehold.it/90x90/f8c2c5/ffffff" />
+                                        <h6>
+                                            A post with a weird username.
+                                        </h6>
+                                        <cite><i class="fa fa-user"></i>SlicedBread32</cite>
+                                        <div class="clearfix"></div>
+                                    </li>
+                                </ul><!-- .posts -->
+                            </li>
+                            <li>
+                                <ul class="posts">
+                                    <li>
+                                        <a href="single.html">
+                                                <span class="hover">
+                                                    <span><i class="fa fa-heart"></i>22</span>
+                                                    <span><i class="fa fa-eye"></i>1,230</span>
+                                                    <span><i class="fa fa-external-link"></i>102</span>
+                                                </span><!-- .hover -->
+                                        </a>
+                                        <img src="http://placehold.it/90x90/f8c2c5/ffffff" />
+                                        <h6>
+                                            This is really cool, hover over me.
+                                        </h6>
+                                        <cite><i class="fa fa-user"></i>SupremeGeneral</cite>
+                                        <div class="clearfix"></div>
+                                    </li>
+
+                                    <li>
+                                        <a href="single.html">
+                                                <span class="hover">
+                                                    <span><i class="fa fa-heart"></i>39</span>
+                                                    <span><i class="fa fa-eye"></i>2,134</span>
+                                                    <span><i class="fa fa-external-link"></i>2</span>
+                                                </span><!-- .hover -->
+                                        </a>
+                                        <img src="http://placehold.it/90x90/f8c2c5/ffffff" />
+                                        <h6>
+                                            Another title? Why not?
+                                        </h6>
+                                        <cite><i class="fa fa-user"></i>MuffinBasket221</cite>
+                                        <div class="clearfix"></div>
+                                    </li>
+
+                                    <li>
+                                        <a href="single.html">
+                                                <span class="hover">
+                                                    <span><i class="fa fa-heart"></i>122,291</span>
+                                                    <span><i class="fa fa-eye"></i>1,322</span>
+                                                    <span><i class="fa fa-external-link"></i>1</span>
+                                                </span><!-- .hover -->
+                                        </a>
+                                        <img src="http://placehold.it/90x90/f8c2c5/ffffff" />
+                                        <h6>
+                                            Badass blog post title!
+                                        </h6>
+                                        <cite><i class="fa fa-user"></i>SupremeGeneral</cite>
+                                        <div class="clearfix"></div>
+                                    </li>
+                                </ul><!-- .posts -->
+                            </li>
+                        </ul><!-- .posts-wrapper -->
                     </div>
                 </div>
-            </widget>
+
+            </div><!-- .col-lg-4 .sidebar -->
+
+        </div><!-- .row -->
+    </div><!-- .container -->
+</section><!-- .content-section -->
+
+<section class="content-section callout">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 anim fadeInLeft">
+                <p> Aenean fermentum libero eu lectus tristique, quis ornare tortor tristique pretium. </p>
+            </div><!-- .col-lg-8 -->
+            <div class="col-lg-4 anim fadeInRight">
+                <a class="btn btn-bordered white btn-sm anim fadeInRight" role="button">Action 2</a>
+                <a class="btn btn-bordered white btn-sm anim fadeInRight" role="button">Buy Dale</a>
+            </div><!-- .col-lg-4 -->
+        </div><!-- .row -->
+    </div><!-- .container -->
+</section><!-- .content-section -->
+
+<footer class="classic">
+    <section class="content-section parallax-bg-3" data-stellar-background-ratio=".15">
+
+        <div class="container">
+
+            <div class="col-lg-12">
+                <h1 class="anim fadeInDown">Convinced?</h1>
+                <div class="center-buttons">
+                    <p>
+                        <a class="btn btn-bordered white anim fadeInRight" role="button">Buy Dale</a>
+                    </p>
+                </div><!-- .center-buttons -->
+            </div>
+
+        </div><!-- .container -->
+
+        <div class="foot-wrapper">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-md-3 anim fadeInLeft">
+                                <span class="logo">
+                                    <img src="__TMPL__/public/images/logo-light.png" alt="Light logo" />
+                                </span><!-- .logo -->
+                        <p>
+                            Aenean lacinia bibendum nulla sed leo erat a ante venenatis dapibus posuere velit aliquet.
+                            Donec ullamcorper metus auctor fringi. Nillam quis risus.
+                        </p>
+                    </div><!-- .col-lg-3 -->
+
+                    <div class="col-md-3 anim fadeInLeft">
+                        <h5><i class="fa fa-twitter-square"></i>TWITTERSPHERE</h5>
+
+                        <div class="twitter-feed-wrapper">
+                            <div id="twitter-feed"></div>
+                        </div>
+
+                    </div><!-- .col-lg-3 -->
+
+                    <div class="col-md-3">
+                        <h5 class="anim fadeInRight"><i class="fa fa-rocket"></i>PAGES TO VISIT</h5>
+                        <ul class="pages">
+                            <li class="anim fadeInRight" data-wow-delay="0.35s"><a class="btn btn-bordered white" role="button" href="#">Home</a></li>
+                            <li class="anim fadeInRight" data-wow-delay="0.37s"><a class="btn btn-bordered white" role="button" href="#">Portfolio</a></li>
+                            <li class="anim fadeInRight" data-wow-delay="0.39s"><a class="btn btn-bordered white" role="button" href="#">About</a></li>
+
+                            <li class="anim fadeInRight" data-wow-delay="0.42s"><a class="btn btn-bordered white" role="button" href="#">Blog</a></li>
+                            <li class="anim fadeInRight" data-wow-delay="0.45s"><a class="btn btn-bordered white" role="button" href="#">Contact</a></li>
+                            <li class="anim fadeInRight" data-wow-delay="0.49s"><a class="btn btn-bordered white" role="button" href="#">About</a></li>
+
+                            <li class="anim fadeInRight" data-wow-delay="0.51s"><a class="btn btn-bordered white" role="button" href="#">Single Post</a></li>
+                            <li class="anim fadeInRight" data-wow-delay="0.54s"><a class="btn btn-bordered white" role="button" href="#">Contact</a></li>
+                        </ul><!-- .pages -->
+                    </div><!-- .col-lg-3 -->
+
+                    <div class="col-md-3 anim fadeInRight">
+                        <h5><i class="fa fa-rss"></i>STAY CONNECTED</h5>
+
+                        <div class="contact-info">
+                            <p>
+                                Feel free to call us any time, we have a staff
+                                dedicated to taking your calls.
+                            </p>
+
+                            <span>
+                                    	<i class="fa fa-phone"></i>
+                                        +1 (313) 123 - 4321
+                                    </span>
+
+                            <span>
+                                    	<i class="fa fa-envelope"></i>
+                                        support@example.com
+                                    </span>
+
+                            <ul class="social-media" data-wow-delay="0.25s">
+                                <li><a href="#twitter"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#facebook"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#linkedin"><i class="fa fa-linkedin"></i></a></li>
+                                <li><a href="#github"><i class="fa fa-github"></i></a></li>
+                                <li><a href="#pintrest"><i class="fa fa-pinterest"></i></a></li>
+                            </ul><!-- .social-media -->
+                        </div>
+                    </div><!-- .col-lg-3 -->
+
+                </div><!-- .row -->
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <span class="copyright">Copyright 2014 Empirical Themes LLC - All RIghts Reserved. More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></span>
+                    </div><!-- .col-lg-12 -->
+                </div><!-- .row -->
+            </div><!-- .container -->
+        </div><!-- .foot-wrapper -->
 
 
-            <widget name="last_articles">
-                <div class="tc-box">
-                    <div class="headtitle">
-                        <h2>{$widget.title}</h2>
-                    </div>
-                    <div class="posts">
-                        <portal:articles limit="5" order="post.published_time DESC"
-                                         categoryIds="$widget.vars.last_articles_category_id">
-                            <dl class="dl-horizontal">
-                                <dt>
-                                    <a class="img-wraper"
-                                       href="{:cmf_url('portal/Article/index',array('id'=>$vo.id))}">
-                                        <if condition="empty($vo.more.thumbnail)">
-                                            <img src="__TMPL__/public/assets/images/default_tupian4.png"
-                                                 class="img-responsive" alt="{$vo.post_title}"/>
-                                            <else/>
-                                            <img src="{:cmf_get_image_url($vo.more.thumbnail)}"
-                                                 class="img-responsive" alt="{$vo.post_title}"/>
-                                        </if>
-                                    </a>
-                                </dt>
-                                <dd>
-                                    <a href="{:cmf_url('portal/Article/index',array('id'=>$vo['id']))}">{$vo.post_title}</a>
-                                </dd>
-                            </dl>
-                        </portal:articles>
-                    </div>
-                </div>
-            </widget>
+        </div><!-- .container -->
+    </section><!-- .content-section -->
 
-        </div>
-    </div>
+</footer>
 
-    <include file="public@footer"/>
-</div>
+<script language="javascript" src="__TMPL__/public/js/jquery-1.11.0.min.js"></script>
+<!-- Easing core JavaScript -->
+<script language="javascript" src="__TMPL__/public/js/jquery.easing.1.3.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script language="javascript" src="__TMPL__/public/js/bootstrap.min.js"></script>
+<!-- WOW core JavaScript -->
+<script language="javascript" src="__TMPL__/public/js/wow.min.js"></script>
+<!-- Waypoints core JavaScript -->
+<script language="javascript" src="__TMPL__/public/js/waypoints.min.js"></script>
+<!-- Underscore core JavaScript -->
+<script language="javascript" src="__TMPL__/public/js/underscore-min.js"></script>
+<!-- jQuery Backstretch core -->
+<script language="javascript" src="__TMPL__/public/js/jquery.backstretch.min.js"></script>
+<!-- jQuery color core JavaScript -->
+<script language="javascript" src="__TMPL__/public/js/jquery.animation.js"></script>
+<!-- Stellar core JavaScript -->
+<script language="javascript" src="__TMPL__/public/js/jquery.stellar.min.js"></script>
+<!-- NiceScroll core Javascript -->
+<script language="javascript" src="__TMPL__/public/js/jquery.nicescroll.min.js"></script>
+<!-- Retina core JavaScript -->
+<script language="javascript" src="__TMPL__/public/js/retina-1.1.0.min.js"></script>
+<!-- Nivo Slider JavaScript -->
+<script language="javascript" src="__TMPL__/public/js/jquery.nivo.slider.pack.js"></script>
+<!-- Video core JavaScript -->
+<script language="javascript" src="__TMPL__/public/js/video.js"></script>
+<!-- OWL Carousel core JavaScript -->
+<script language="javascript" src="__TMPL__/public/js/owl.carousel.min.js"></script>
+<!-- CountUp core JavaScript -->
+<script language="javascript" src="__TMPL__/public/js/countUp.min.js"></script>
+<!-- EasypieChart core JavaScript -->
+<script language="javascript" src="__TMPL__/public/js/jquery.easypiechart.min.js"></script>
+<!-- twitterfeed core JavaScript -->
+<script language="javascript" src="__TMPL__/public/js/jquery.twitterfeed.js"></script>
+<!-- Everything else -->
+<script language="javascript" src="__TMPL__/public/js/custom.js"></script>
 
-<include file="public@scripts"/>
-<hook name="before_body_end"/>
+<script type="text/javascript" language="javascript">
+    <!--
+
+    $(window).load(function() {
+        $("#about_slider").nivoSlider({
+            slices: 4,
+            boxCols: 8,
+            boxRows: 4,
+            animSpeed: 200,
+            controlNav: false,
+            prevText: '<i class="fa fa-chevron-left"></i>',
+            nextText: '<i class="fa fa-chevron-right"></i>',
+        });
+    });
+
+    $(document).ready(function() {
+        $("#carousel,#carousel-2").owlCarousel({
+            autoPlay:true,
+            singleItem:true,
+            transitionStyle:"goDown",
+            slideSpeed : 400,
+            touchDrag:false,
+            mouseDrag:false
+        });
+
+        $("#testimonials").owlCarousel({
+            singleItem:true,
+            autoPlay:true,
+            slideSpeed : 800
+        });
+    });
+    // -->
+</script>
 </body>
 </html>

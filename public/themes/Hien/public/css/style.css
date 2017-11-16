@@ -35,7 +35,7 @@ a:hover {
 	position:relative;
 	height:100% !important;
 	overflow:hidden;
-	background:url(__TMPL__/public/images/design/preload.GIF) center center no-repeat transparent;
+	background:url(../images/design/preload.GIF) center center no-repeat transparent;
 }
 
 .parallax {
@@ -819,7 +819,7 @@ h6 {
 }
 
 .slider-laptop .laptop {
-	background:url(__TMPL__/public/images/design/mac.png) center left no-repeat transparent;
+	background:url(../images/design/mac.png) center left no-repeat transparent;
 	width:871px;
 	height:575px;
 	left:50%;
@@ -1789,7 +1789,7 @@ a#desc span.desc span.subtitle {
 }
 
 .team .member-box .shadow-lg {
-	background:url(__TMPL__/public/images/design/shadows-lg.png) no-repeat left bottom transparent;
+	background:url(../images/design/shadows-lg.png) no-repeat left bottom transparent;
 	width:1174px;
 	height:60px;
 	position:absolute;
@@ -2461,7 +2461,7 @@ footer.classic .copyright {
 	left:50%;
 	margin-left:-408px;
 	top:-1px;
-	background:url(__TMPL__/public/images/design/section-shadows-lg.png)	center top no-repeat transparent;
+	background:url(../images/design/section-shadows-lg.png)	center top no-repeat transparent;
 }
 
 .content-section.fixed h1 {
@@ -3227,7 +3227,7 @@ ul.info-list li i.fa {
 }
 
 .gmap + .shadow-lg {
-	background:url(__TMPL__/public/images/design/section-shadows-lg.png) no-repeat left bottom transparent;
+	background:url(../images/design/section-shadows-lg.png) no-repeat left bottom transparent;
 	width:1174px;
 	height:60px;
 	position:absolute;
@@ -3245,7 +3245,7 @@ ul.info-list li i.fa {
 **/
 
 .parallax-bg-1 {
-	background:url(__TMPL__/public/images/bg-cityscape.jpg) repeat center center fixed;
+	background:url(../images/bg-cityscape.jpg) repeat center center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -3253,7 +3253,7 @@ ul.info-list li i.fa {
 }
 
 .parallax-bg-2 {
-	background:url(__TMPL__/public/images/bg-blur-rock.jpg) repeat center center fixed;
+	background:url(../images/bg-blur-rock.jpg) repeat center center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -3261,7 +3261,7 @@ ul.info-list li i.fa {
 }
 
 .parallax-bg-3 {
-	background:url(__TMPL__/public/images/bg-footer.jpg) repeat center center fixed;
+	background:url(../images/bg-footer.jpg) repeat center center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -3269,7 +3269,7 @@ ul.info-list li i.fa {
 }
 
 .parallax-bg-4 {
-	background:url(__TMPL__/public/images/bg-mountain-water.jpg) repeat center center fixed;
+	background:url(../images/bg-mountain-water.jpg) repeat center center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -3277,11 +3277,11 @@ ul.info-list li i.fa {
 }
 
 .parallax-bg-5 {
-	background:url(__TMPL__/public/images/bg-car-water.jpg) repeat center center fixed;
+	background:url(../images/bg-car-water.jpg) repeat center center fixed;
 }
 
 .parallax-slug-1 {
-	background:url(__TMPL__/public/images/slug-buildings.jpg) repeat center center fixed;
+	background:url(../images/slug-buildings.jpg) repeat center center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -3289,7 +3289,7 @@ ul.info-list li i.fa {
 }
 
 .parallax-slug-2 {
-	background:url(__TMPL__/public/images/slug-curb.jpg) repeat center center fixed;
+	background:url(../images/slug-curb.jpg) repeat center center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -3297,7 +3297,7 @@ ul.info-list li i.fa {
 }
 
 .parallax-slug-3 {
-	background:url(__TMPL__/public/images/slug-laptop.jpg) repeat center center fixed;
+	background:url(../images/slug-laptop.jpg) repeat center center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -3305,7 +3305,7 @@ ul.info-list li i.fa {
 }
 
 .parallax-slug-4 {
-	background:url(__TMPL__/public/images/slug-locks.jpg) repeat center center fixed;
+	background:url(../images/slug-locks.jpg) repeat center center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -3313,7 +3313,7 @@ ul.info-list li i.fa {
 }
 
 .parallax-slug-5 {
-	background:url(__TMPL__/public/images/slug-walk.jpg) repeat center center fixed;
+	background:url(../images/slug-walk.jpg) repeat center center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -3720,7 +3720,7 @@ ul.accordion li.active > article p {
 		width:300px;
 	}
 	.slider-laptop .laptop {
-		background:url(__TMPL__/public/images/design/mac-md.png) center left no-repeat transparent;
+		background:url(../images/design/mac-md.png) center left no-repeat transparent;
 		width:480px;
 		height:317px;
 		left:50%;
