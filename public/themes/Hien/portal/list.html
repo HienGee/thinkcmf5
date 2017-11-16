@@ -32,15 +32,14 @@
 </div><!-- .navigation -->
 
 <div id="nav-ends"></div>
-
 <section class="slug parallax-slug-3" data-stellar-background-ratio="0">
     <div class="overlay">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="anim fadeInDown">Blog</h1>
-                    <p class="anim fadeInDown" data-wow-delay=".32s">Check out our badass posts.</p>
-                    <span class="anim fadeInDown" data-wow-delay=".42s"><a href="index.html">Home</a> <i class="fa fa-angle-right"></i> About</span>
+                    <h1 class="anim fadeInDown">{$category.name}</h1>
+                    <p class="anim fadeInDown" data-wow-delay=".32s">{$category.description}</p>
+                    <span class="anim fadeInDown" data-wow-delay=".42s"><a href="/">首页</a> <i class="fa fa-angle-right"></i> {$category.name}</span>
                 </div><!-- .col-lg-12 -->
             </div><!-- .row -->
         </div>
@@ -56,6 +55,11 @@
                     $where=[
                     'post.create_time'=>['egt',0]
                     ];
+                    if($_GET['name']){
+                        $where=[
+                    'post_title'=>array('like','%'.$_GET['name'].'%')
+                    ];
+                    }
                 </php>
                 <portal:articles item="vo" where="$where" order="post.create_time DESC" page="10"
                                  relation="categories"
@@ -117,67 +121,11 @@
                 </h4>
                 <form>
                    		<span class="search-wrapper anim fadeInRight">
-                            <input type="text" name="s" class="search" value="" placeholder="Type then press enter..." />
+                            <input type="text" name="name" class="search" value="" placeholder="Type then press enter..." />
                             <i class="fa fa-search"></i>
                     	</span>
                 </form>
 
-                <h4 class="anim fadeInRight">
-                    Recent Comments<i class="fa fa-comment"></i>
-                </h4>
-
-                <div class="anim fadeInRight">
-                    <ul id="carousel" class="comments-wrapper">
-                        <li>
-                            <ul class="comments">
-                                <li>
-                                    Quisque accumsan justo ut malesuada sa&hellip;
-                                    <a href="single.html">- Username</a>
-                                </li>
-                                <li>
-                                    Suspendisse euismod turpis eu aliquam t&hellip;
-                                    <a href="single.html">- Username</a>
-                                </li>
-                                <li>
-                                    Nullam faucibus eros quis nisl gravidas lo&hellip;
-                                    <a href="single.html">- Username</a>
-                                </li>
-                            </ul><!-- .comments -->
-                        </li>
-                        <li>
-                            <ul class="comments">
-                                <li>
-                                    Nullam faucibus eros quis nisl gravidas lo&hellip;
-                                    <a href="single.html">- Username</a>
-                                </li>
-                                <li>
-                                    Suspendisse euismod turpis eu aliquam t&hellip;
-                                    <a href="single.html">- Username</a>
-                                </li>
-                                <li>
-                                    Quisque accumsan justo ut malesuada sa&hellip;
-                                    <a href="single.html">- Username</a>
-                                </li>
-                            </ul><!-- .comments -->
-                        </li>
-                        <li>
-                            <ul class="comments">
-                                <li>
-                                    Suspendisse nec risus lorem. Morbi dapib.
-                                    <a href="single.html">- Username</a>
-                                </li>
-                                <li>
-                                    Suspendisse nec risus lorem. Morbi dapib.
-                                    <a href="single.html">- Username</a>
-                                </li>
-                                <li>
-                                    Suspendisse nec risus lorem. Morbi dapib.
-                                    <a href="single.html">- Username</a>
-                                </li>
-                            </ul><!-- .comments -->
-                        </li>
-                    </ul><!-- .comments-wrapper -->
-                </div>
 
                 <h4 class="anim fadeInRight">
                     Testimonials<i class="fa fa-quote-right"></i>
@@ -185,30 +133,17 @@
 
                 <div class="testimonials anim fadeInRight">
                     <div class="testimonial-wrapper" id="testimonials">
-                        <div>
+                        <widget name="hottest_articles">
+                            <portal:articles limit="5" order="post.post_hits DESC"
+                                             categoryIds="$widget.vars.hottest_articles_category_id">
+                        <div style="width: 100%">
                             <p>
-                                Donec sapien purus, aliquet sed gravida vitae,
-                                luctus vitae elit. Nunc a est magna. Cras eu purus
-                                a tortor elementum aliquam.
+                                {$vo.post_excerpt}
                             </p>
-                            <img src="http://placehold.it/70x70/f8c2c5/ffffff" />
+                            <img src="{:cmf_get_image_url($vo.more.thumbnail)}" />
                         </div>
-                        <div>
-                            <p>
-                                Donec sapien purus, aliquet sed gravida vitae,
-                                luctus vitae elit. Nunc a est magna. Cras eu purus
-                                a tortor elementum aliquam.
-                            </p>
-                            <img src="http://placehold.it/70x70/f8c2c5/ffffff" />
-                        </div>
-                        <div>
-                            <p>
-                                Donec sapien purus, aliquet sed gravida vitae,
-                                luctus vitae elit. Nunc a est magna. Cras eu purus
-                                a tortor elementum aliquam.
-                            </p>
-                            <img src="http://placehold.it/70x70/f8c2c5/ffffff" />
-                        </div>
+                            </portal:articles>
+                        </widget>
                     </div><!-- .testimonials -->
 
                     <h4>Some Text<i class="fa fa-bug"></i></h4>

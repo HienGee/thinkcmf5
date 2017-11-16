@@ -109,6 +109,22 @@
                     }
                 }
             },
+            "features2": {
+                "title": "Our Work",
+                "display": "1",
+                "vars": {
+                    "sub_title": {
+                        "title": "副标题",
+                        "value": "We offer many various services at Dale! We will list a few right here, right now just to show you how incredibly awesome we are at our company!",
+                        "type": "text",
+                        "placeholder": "请输入副标题",
+                        "tip": "",
+                        "rule": {
+                            "require": true
+                        }
+                    }
+                }
+            },
             "mid_features": {
                 "title": "轮播文字",
                 "display": "1",
@@ -161,6 +177,42 @@
                             "multi": true
                         },
                         "placeholder": "请选择分类",
+                        "tip": "",
+                        "rule": {
+                            "require": true
+                        }
+                    }
+                }
+            },
+            "hots": {
+                "title": "案例展示",
+                "display": "1",
+                "vars": {
+                    "hot_category_id": {
+                        "title": "案例分类ID",
+                        "value": "",
+                        "type": "text",
+                        "dataSource": {
+                            "api": "portal/category/index",
+                            "multi": true
+                        },
+                        "placeholder": "请选择案例分类",
+                        "tip": "",
+                        "rule": {
+                            "require": true
+                        }
+                    }
+                }
+            },
+            "features3": {
+                "title": "快速了解ThinkCMF",
+                "display": "1",
+                "vars": {
+                    "sub_title": {
+                        "title": "副标题",
+                        "value": "Quickly understand the ThinkCMF",
+                        "type": "text",
+                        "placeholder": "请输入副标题",
                         "tip": "",
                         "rule": {
                             "require": true

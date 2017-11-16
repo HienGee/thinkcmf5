@@ -186,13 +186,15 @@
         <div class="ms-nav-next" id="tNext"></div>
 
     </section><!-- .content-section -->
-    
-    <section class="content-section anim fadeInDown" data-wow-delay="0.25s">
-        <div class="container">
-            <h1><i class="fa fa-pencil"></i>OUR <span>WORK</span></h1>
-              <p>We offer many various services at Dale! We will list a few right here, right now just to show you how incredibly awesome we are at our company!</p>
-        </div>
-    </section>
+
+    <widget name="features2">
+        <section class="content-section anim fadeInDown" data-wow-delay="0.25s">
+            <div class="container">
+                <h1><i class="fa fa-pencil"></i>{$widget.title}</h1>
+                <p>{$widget.vars.sub_title}</p>
+            </div>
+        </section>
+    </widget>
 
     <section class="portfolio">
     	<div class="container">
@@ -212,54 +214,31 @@
 
             <ul>
 
-                <li class="work">
-                   	<a href="__TMPL__/public/images/blog-image-2.jpg" id="desc" data-icon="fa-eye" data-lightbox="image-1">
-                        <img src="http://placehold.it/400x300g/f8c2c5/ffffff" />
-                    </a>
-                </li>
+                <widget name="hots">
+                    <portal:articles limit="8" order="post.published_time DESC"
+                                     categoryIds="$widget.vars.hot_category_id">
 
-                <li class="work projects">
-                   	<a href="__TMPL__/public/images/blog-image-2.jpg" id="desc" data-icon="fa-eye" data-lightbox="image-1">
-                        <img src="http://placehold.it/400x300g/f8c2c5/ffffff" />
-                    </a>
-                </li>
+                        <php>
+                            $arr = explode(',',$widget['vars']['hot_category_id']);
+                            $map['id'] = array('in',$arr);
+                            $a = db('portal_category')->where($map)->select();
+                            foreach($a as &$v){
+                            if($v['id'] == $vo['category_id']){
+                            $classname = $v['name'];
+                            }
+                            }
+                        </php>
+                        <li class="{$classname}">
+                            <a href="{:cmf_url('portal/Article/index',array('id'=>$vo.id))}" id="desc" data-icon="fa-eye"
+                               data-lightbox="image-1">
+                                <img src="{:cmf_get_image_url($vo.more.thumbnail)}"/>
+                            </a>
+                        </li>
 
-                <li class="projects">
-                   	<a href="__TMPL__/public/images/blog-image-2.jpg" id="desc" data-icon="fa-eye" data-lightbox="image-1">
-                        <img src="http://placehold.it/400x300g/f8c2c5/ffffff" />
-                    </a>
-                </li>
 
-                <li class="work">
-                   	<a href="__TMPL__/public/images/blog-image-2.jpg" id="desc" data-icon="fa-eye" data-lightbox="image-1">
-                        <img src="http://placehold.it/400x300g/f8c2c5/ffffff" />
-                    </a>
-                </li>
-                <!-- End of row -->
-
-                <li class="work">
-                   	<a href="__TMPL__/public/images/blog-image-2.jpg" id="desc" data-icon="fa-eye" data-lightbox="image-1">
-                        <img src="http://placehold.it/400x300g/f8c2c5/ffffff" />
-                    </a>
-                </li>
-
-                <li class="projects">
-                   	<a href="__TMPL__/public/images/blog-image-2.jpg" id="desc" data-icon="fa-eye" data-lightbox="image-1">
-                        <img src="http://placehold.it/400x300g/f8c2c5/ffffff" />
-                    </a>
-                </li>
-
-                <li class="projects">
-                   	<a href="__TMPL__/public/images/blog-image-2.jpg" id="desc" data-icon="fa-eye" data-lightbox="image-1">
-                        <img src="http://placehold.it/400x300g/f8c2c5/ffffff" />
-                    </a>
-                </li>
-
-                <li>
-                   	<a href="__TMPL__/public/images/blog-image-2.jpg" id="desc" data-icon="fa-eye" data-lightbox="image-1">
-                        <img src="http://placehold.it/400x300g/f8c2c5/ffffff" />
-                    </a>
-                </li>
+                    </portal:articles>
+                    <div class="clearfix"></div>
+                </widget>
 
             </ul>
 
@@ -267,15 +246,14 @@
         </div>
     </section><!-- portfolio -->
 
-    <section class="content-section anim fadeInDown" data-wow-delay="0.25s">
-        <div class="container">
-            <h1><i class="fa fa-rocket"></i>OUR BADASS <span>TEAM</span></h1>
-          	<p>
-                The great services would not have been remotley possible if it was not for the effort exerted
-                by our amazing and talented team, check them out.
-       		</p>
-        </div>
-    </section><!-- .content-section -->
+    <widget name="features3">
+        <section class="content-section anim fadeInDown" data-wow-delay="0.25s">
+            <div class="container">
+                <h1><i class="fa fa-rocket"></i>{$widget.title}</h1>
+                <p>{$widget.vars.sub_title}</p>
+            </div>
+        </section><!-- .content-section -->
+    </widget>
 
     <section class="content-section parallax-bg-2 team" data-stellar-background-ratio="0.15">
 
