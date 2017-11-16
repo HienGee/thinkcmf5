@@ -109,6 +109,45 @@
                     }
                 }
             },
+            "mid_features": {
+                "title": "轮播文字",
+                "display": "1",
+                "vars": {
+                    "features": {
+                        "title": "特性介绍",
+                        "value": [
+                            {
+                                "title": "Dream more than others think practical. Expect more than others think possible.",
+                                "desc": "Howard Schultz",
+                                "content": " - Starbucks CEO"
+                            }
+                        ],
+                        "type": "array",
+                        "item": {
+                            "title": {
+                                "title": "标题",
+                                "value": "",
+                                "type": "text",
+                                "rule": {
+                                    "require": true
+                                }
+                            },
+                            "desc": {
+                                "title": "副标题",
+                                "value": "",
+                                "type": "text"
+                            },
+                            "content": {
+                                "title": "描述",
+                                "value": "",
+                                "type": "text"
+                            }
+                        },
+                        "tip": ""
+
+                    }
+                }
+            },
             "last_news": {
                 "title": "最新资讯",
                 "display": "1",
