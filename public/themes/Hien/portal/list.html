@@ -55,7 +55,7 @@
                     $where=[
                     'post.create_time'=>['egt',0]
                     ];
-                    if($_GET['name']){
+                    if(isset($_GET['name'])){
                         $where=[
                     'post_title'=>array('like','%'.$_GET['name'].'%')
                     ];
@@ -69,7 +69,7 @@
 
                 <div class="blog anim fadeInLeft">
                         <span class="image">
-                            <a href="single.html" id="desc" data-icon="fa-link">
+                            <a href="{:cmf_url('portal/Article/index',array('id'=>$vo.id))}" id="desc" data-icon="fa-link">
                                 <img src="{:cmf_get_image_url($vo.more.thumbnail)}" alt="Blog Sample Image" />
                             </a>
                         </span><!-- .image -->
