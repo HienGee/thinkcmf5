@@ -61,7 +61,7 @@
                     ];
                     }
                 </php>
-                <portal:articles item="vo" where="$where" order="post.create_time DESC" page="10"
+                <portal:articles item="vo" where="$where" order="post.create_time DESC" page="2"
                                  relation="categories"
                                  categoryIds="$category.id"
                                  returnVarName="articles_data">
@@ -104,13 +104,8 @@
 
                 </portal:articles>
 
-                <ul class="pagination anim fadeInLeft" data-wow-delay="0.2s">
-                    <li><a href="single.html">&laquo;</a></li>
-                    <li><a href="single.html">1</a></li>
-                    <li><a href="single.html">2</a></li>
-                    <li><a href="single.html">3</a></li>
-                    <li><a href="single.html">4</a></li>
-                    <li><a href="single.html">&raquo;</a></li>
+                <ul class="pagination">
+                    <page/>
                 </ul><!-- .pagination -->
 
             </div><!-- .col-lg-9 -->
